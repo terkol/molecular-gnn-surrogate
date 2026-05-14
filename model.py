@@ -14,7 +14,7 @@ class Network(nn.Module):
         self.linear2 = nn.Linear(32, 1)
 
     def forward(self, x, edge_index, batch):
-        # Using relu activation
+        # Using relu activation 
         x = F.relu(self.conv1(x, edge_index))
         x = F.relu(self.conv2(x, edge_index))
         x = self.conv3(x, edge_index)

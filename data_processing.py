@@ -15,7 +15,7 @@ def get_atom_features(atom):
 def create_graph_dataset(file_name, sample_size=None):
     """
     Parses SMILES strings into PyTorch Geometric Data objects
-    """
+    """ 
     path = Path(__file__).parent
     df = pd.read_csv(path / 'data' / file_name)
 

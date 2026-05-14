@@ -22,7 +22,6 @@ for epoch in range(200):
         
         prediction = model(batch.x, batch.edge_index, batch.batch)
         loss = F.mse_loss(prediction, batch.y)
-        
         loss.backward()
         optimizer.step()
 
