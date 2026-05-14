@@ -17,7 +17,7 @@ Parses SMILES strings into spatial graphs with RDkit. Extracts fundamental atomi
 
 Utilizes a 3-Layer Graph Convolutional Network (GCNConv) and ReLU activation. Global add pooling integrates localized atomic states into a unified molecular representation before final linear regression.
 
-### Execution Engine (`src/train.py`)
+### Execution Engine (`src/training.py`)
 
 Uses a strict 80/20 train-validation split prior to DataLoader instantiation to isolate out-of-sample prediction accuracy and to monitor for overfitting. The engine uses the `Adam` optimizer calculating Mean Squared Error (MSE) loss against RDKit-derived ground truth LogP values.
 
@@ -30,7 +30,7 @@ Uses a strict 80/20 train-validation split prior to DataLoader instantiation to 
     │   ├── __init__.py
     │   ├── data_processing.py        # Graph topology and feature extraction
     │   ├── model.py                  # PyTorch Geometric neural architecture
-    │   └── train.py                  # CLI execution and validation loop
+    │   └── training.py               # Execution and validation loop
     ├── requirements.txt              # Explicit dependency tree
     ├── Dockerfile                    # Containerization instructions
     └── README.md                     # Technical documentation
@@ -51,4 +51,4 @@ Install the required dependencies
 
 Execute `training.py`:
 
-`python training.py`
+`python src/training.py`
