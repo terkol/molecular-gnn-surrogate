@@ -2,11 +2,11 @@
 
 This repository implements a Physics-Informed Graph Convolutional Network (GCN) designed to act as a high-speed surrogate model for predicting molecular properties (specifically LogP) directly from text-based SMILES strings. 
 
-The pipeline bridges raw cheminformatics data processing with deep learning, bypassing computationally expensive physics-based simulations by utilizing a Message Passing Neural Network (MPNN) architecture.
+The pipeline bridges raw cheminformatics data processing with deep learning, bypassing computationally expensive physics-based simulations by utilizing a Message Passing Neural Network (MPNN).
 
 ## Architecture
 
-The codebase is decoupled into distinct data processing and execution logic, ensuring industrial MLOps standards and rapid hyperparameter iteration.
+The codebase is decoupled into distinct data processing and execution logic, following industrial MLOps standards.
 
 ### Data Ingestion & Transformation (`src/data_processing.py`)
 
