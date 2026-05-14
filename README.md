@@ -19,7 +19,7 @@ Utilizes a 3-Layer Graph Convolutional Network (GCNConv) and ReLU activation. Gl
 
 ### Execution Engine (`src/training.py`)
 
-Uses a strict 80/20 train-validation split prior to DataLoader instantiation to isolate out-of-sample prediction accuracy and to monitor for overfitting. The engine uses the `Adam` optimizer calculating Mean Squared Error (MSE) loss against RDKit-derived ground truth LogP values.
+Uses a strict 80/20 train-validation split prior to DataLoader instantiation to isolate out-of-sample prediction accuracy and to monitor for overfitting. The engine uses the `Adam` optimizer calculating Mean Squared Error (MSE) loss against RDKit-derived ground truth LogP values. 
 
 ## Repository Structure
 
@@ -30,7 +30,7 @@ Uses a strict 80/20 train-validation split prior to DataLoader instantiation to 
     │   ├── data_processing.py        # Graph topology and feature extraction
     │   ├── model.py                  # PyTorch Geometric neural architecture
     │   └── training.py               # Execution and validation loop
-    ├── requirements.txt              # Explicit dependency tree
+    ├── requirements.txt
     └── README.md                     
 
 ## Execution Instructions
