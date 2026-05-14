@@ -25,15 +25,13 @@ Uses a strict 80/20 train-validation split prior to DataLoader instantiation to 
 
     molecular-gnn-surrogate/
     ├── data/
-    │   └── zinc250k_selfies.csv      # Excluded from version control (.gitignore)
+    │   └── zinc250k_selfies.csv      # Smiles strings and selfies etc.
     ├── src/
-    │   ├── __init__.py
     │   ├── data_processing.py        # Graph topology and feature extraction
     │   ├── model.py                  # PyTorch Geometric neural architecture
     │   └── training.py               # Execution and validation loop
     ├── requirements.txt              # Explicit dependency tree
-    ├── Dockerfile                    # Containerization instructions
-    └── README.md                     # Technical documentation
+    └── README.md                     
 
 ## Execution Instructions
 
