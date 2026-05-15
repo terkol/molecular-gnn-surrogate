@@ -5,34 +5,44 @@ from torch_geometric.data import Data
 from rdkit import Chem
 from rdkit.Chem import Descriptors
 
-def get_atom_features(atom):
-    """
-    Get mass, connections (other than hydrogen), formal charge, aromaticity, number of hydrogens and hybridization state
-    """
-    features = [atom.GetMass(), atom.GetDegree(), atom.GetFormalCharge(), int(atom.GetIsAromatic()), atom.GetTotalNumHs(), atom.GetHybridization()]
-    return torch.tensor(features, dtype=torch.float)
+def get_features(a):
+    return torch.tensor([a.GetMass(), a.GetDegree(), a.GetFormalCharge(), int(a.GetIsAromatic()), a.GetTotalNumHs(), a.GetHybridization()], dtype=torch.float)
 
-def create_graph_dataset(file_name, sample_size=None):
+def get_data(f):
     """
-    Parses SMILES strings into PyTorch Geometric Data objects
-    """ 
-    path = Path(__file__).parent
-    df = pd.read_csv(path / 'data' / file_name)
+    Currently only takes the first ten smiles strings forward, just 
+    to validate the pipeline.
 
-    smiles_list = df.smiles.head(10).to_list()
-    data_list = []
-    for smiles in smiles_list:
+    Input:
+    ------
+        File path to a csv file with a column called 
+        'smiles' that contains the smiles strings.
+
+    Output:
+    ------
+        List of PyG Data objects, one for each smiles string. 
+    """
+    df = pd.read_csv(Path(__file__).parent.parent / "data" / f)
+    
+    # just do 10 for now
+    smiles_strings = df.smiles.head(10).to_list()
+    data = []
+    
+    for smiles in smiles_strings:
         mol = Chem.MolFromSmiles(smiles)
-        if mol is None: 
-            continue
-        x = torch.stack([get_atom_features(atom) for atom in mol.GetAtoms()])
-        edges = []
-        for bond in mol.GetBonds():
-            i, j = bond.GetBeginAtomIdx(), bond.GetEndAtomIdx()
-            edges.extend([[i,j],[j,i]])
+        if not mol: continue
+        
+        x = torch.stack([get_features(a) for a in mol.GetAtoms()])
+        bonds = []
+        
+        for b in mol.GetBonds():
+            i = b.GetBeginAtomIdx()
+            j = b.GetEndAtomIdx()
+            bonds.extend([[i,j],[j,i]]) # Since PyG graphs are undirected
 
-        edge_index = torch.tensor(edges, dtype=torch.long).t()
+        ei = torch.tensor(bonds, dtype=torch.long).t()
         y = torch.tensor([[Descriptors.MolLogP(mol)]], dtype=torch.float)
-        data_list.append(Data(x=x, edge_index=edge_index, y=y))
+        
+        data.append(Data(x=x, edge_index=ei, y=y))
 
-    return data_list
+    return data
