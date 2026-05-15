@@ -1,8 +1,8 @@
 # Molecular Graph Neural Network Surrogate
 
-This repository implements a Physics-Informed Graph Convolutional Network (GCN) designed to act as a high-speed surrogate model for predicting molecular properties (specifically LogP) directly from text-based SMILES strings. 
+A Physics-Informed Graph Convolutional Network (GCN) designed to act as a high-speed surrogate model for predicting molecular properties (specifically LogP) directly from text-based SMILES strings. 
 
-The pipeline bridges raw cheminformatics data processing with deep learning, bypassing computationally expensive physics-based simulations by utilizing a Message Passing Neural Network (MPNN).
+This pipeline bridges raw cheminformatics data processing with deep learning, which bypasses computationally expensive physics-based simulations by utilizing a Message Passing Neural Network (MPNN).
 
 ## Architecture
 
