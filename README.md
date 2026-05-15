@@ -19,13 +19,13 @@ Utilizes a 3-Layer Graph Convolutional Network (GCNConv) and ReLU activation. Gl
 
 ### Execution Engine (`src/training.py`)
 
-Uses a strict 80/20 train-validation split prior to DataLoader instantiation to isolate out-of-sample prediction accuracy and to monitor for overfitting. The engine uses the `Adam` optimizer calculating Mean Squared Error (MSE) loss against RDKit-derived ground truth LogP values. 
+Runs the main training process from start to finish. The script trains the model for 200 epochs, using the Adam optimizer and Mean Squared Error (MSE) loss to improve prediction accuracy. To track progress, it prints the average training loss every 10 epochs so you can verify the model is learning correctly.
 
 ## Repository Structure
 
     molecular-gnn-surrogate/
     ├── data/
-    │   └── zinc250k_selfies.csv      # Smiles strings and selfies etc.
+    │   └── zinc250k_selfies.csv      # Smiles strings, selfies etc.
     ├── src/
     │   ├── data_processing.py        # Graph topology and feature extraction
     │   ├── model.py                  # PyTorch Geometric neural architecture
@@ -37,7 +37,7 @@ Uses a strict 80/20 train-validation split prior to DataLoader instantiation to 
 
  Create the environment:
 
-`conda create --name gnn-surrogate python=3.10 -y`
+`conda create -n gnn-surrogate python=3.10`
 
 Activate the environment:
 
